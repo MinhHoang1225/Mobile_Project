@@ -25,7 +25,7 @@ if (img.startsWith('file://') || img.startsWith('content://') || img.startsWith(
 return { uri: img };
 switch (img) {
   case 't-shirt.jpg':
-    return require('../assets/book_images/t-shirt.jpg');
+    return require('../assets/book_images/balo.jpg');
   case 'sneaker.jpg':
     return require('../assets/book_images/sneaker.jpg');
   case 'balo.jpg':

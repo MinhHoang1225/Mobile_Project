@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { fetchHistory, HistoryItem } from '../database/db';
+import Nav from './Nav';
 
 export default function HistoryItemScreen() {
   const [history, setHistory] = useState<HistoryItem[]>([]);
 
   useEffect(() => {
-    const loadHistory = async () => {
-      const data = await fetchHistory();
-      setHistory(data.reverse()); // hiển thị mới nhất lên đầu
-    };
-    loadHistory();
-  }, []);
+  const loadHistory = async () => {
+    const data = await fetchHistory();
+
+    // Sắp xếp mới nhất lên đầu
+    const sorted = [...data].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+
+    setHistory(sorted);
+  };
+  loadHistory();
+}, []);
+
 
   const renderItem = ({ item }: { item: HistoryItem }) => (
     <View style={styles.card}>
@@ -28,8 +36,11 @@ export default function HistoryItemScreen() {
   );
 
   return (
+    <View style={{ flex: 1 }}>
+      <View style={styles.header}>
+              <Text style={styles.title}>🛒 Lịch sử mua hàng</Text>
+      </View>
     <View style={styles.container}>
-      <Text style={styles.header}>🛒 Lịch sử mua hàng</Text>
       {history.length === 0 ? (
         <Text style={styles.emptyText}>Bạn chưa có đơn hàng nào.</Text>
       ) : (
@@ -41,6 +52,8 @@ export default function HistoryItemScreen() {
         />
       )}
     </View>
+    <Nav/>
+    </View>
   );
 }
 
@@ -51,11 +64,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f8',
   },
   header: {
-    fontSize: 26,
+    padding: 16,
+    backgroundColor: '#dad3aff6',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 22,
     fontWeight: 'bold',
-    marginBottom: 20,
     textAlign: 'center',
-    color: '#4a3aff',
+    color: '#4b3f72',
+    marginBottom: 12,
   },
   card: {
     backgroundColor: '#fff',

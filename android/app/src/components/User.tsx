@@ -74,9 +74,11 @@ const UserScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+      <View style={styles.header}>
         <Text style={styles.title}>👤 User</Text>
-
+</View>
+      <View style={styles.content}>
+        
         {user ? (
           <>
             <Text style={styles.welcomeText}>Xin chào, {user.username} 👋</Text>
@@ -152,7 +154,20 @@ const UserScreen = () => {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   content: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 20 },
-  title: { fontSize: 24, fontWeight: 'bold', marginBottom: 30 },
+   header: {
+    padding: 16,
+    backgroundColor: '#dad3aff6',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#4b3f72',
+    marginBottom: 12,
+  },
   welcomeText: { fontSize: 18, fontWeight: '600', marginBottom: 20 },
   button: {
     backgroundColor: '#dad3aff6',

@@ -55,8 +55,9 @@ const AdminSetting = () => {
 
   return (
     <View style={{ flex: 1 }}>
+              <Text style={styles.title}>⚙️ Admin Setting</Text>
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.title}>⚙️ Admin Setting</Text>
+
 
         <Text style={styles.welcomeText}>
           Xin chào, {admin.username} 👋
@@ -96,9 +97,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
-    marginVertical: 20,
+    textAlign: 'center',
+    paddingVertical: 16,
+    backgroundColor: '#dad3aff6',
+    color: '#333',
   },
   welcomeText: {
     fontSize: 18,

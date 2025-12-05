@@ -32,6 +32,9 @@ export default function ProductByCategory() {
 
   return (
     <View style={{ flex: 1, padding: 16 }}>
+      <TouchableOpacity
+      style={styles.backButton}
+      onPress={() => navigation.goBack()}> <Text style={styles.backText}>Back</Text> </TouchableOpacity>
       <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>
         🛒 Sản phẩm thuộc loại: {name}
       </Text>
@@ -64,6 +67,16 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     justifyContent: 'center',
   },
+  backButton: {
+alignSelf: 'flex-start',
+marginBottom: 16,
+paddingVertical: 6,
+paddingHorizontal: 12,
+borderRadius: 8,
+backgroundColor: '#dad3aff6',
+elevation: 2,
+},
+backText: { fontSize: 14, fontWeight: '700', color: '#000' },
   name: {
     fontSize: 17,
     fontWeight: 'bold',

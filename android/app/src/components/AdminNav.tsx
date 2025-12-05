@@ -47,12 +47,12 @@ const AdminNav = () => {
         <Text style={styles.navText}>Order</Text>
       </TouchableOpacity>
 
-      {/* <TouchableOpacity
+      <TouchableOpacity
         style={styles.navButton}
         onPress={() => navigation.navigate('AdminSetting')}
       >
         <Text style={styles.navText}>Setting</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
     </View>
   );
 };
@@ -71,9 +71,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   navText: {
-    fontSize: 16,
+    fontSize: 10,
     fontWeight: 'bold',
-    color: '#2980b9',
+    color: '#000000ff',
   },
 });
 

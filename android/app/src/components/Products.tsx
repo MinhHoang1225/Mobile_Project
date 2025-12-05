@@ -20,99 +20,91 @@ const Products = () => {
   const navigation = useNavigation<NavigationProp>();
   const [products, setProducts] = useState<Product[]>([]);
   const [searchKeyword, setSearchKeyword] = useState('');
-const [priceMin, setPriceMin] = useState('');
-const [priceMax, setPriceMax] = useState('');
+  const [priceMin, setPriceMin] = useState('');
+  const [priceMax, setPriceMax] = useState('');
 
   useEffect(() => {
     setProducts(productsData.reverse());
   }, []);
 
   const handleSearch = (keyword: string, min?: string, max?: string) => {
-  const k = keyword ?? searchKeyword;
-  const minPrice = min !== undefined ? min : priceMin;
-  const maxPrice = max !== undefined ? max : priceMax;
+    const k = keyword ?? searchKeyword;
+    const minPrice = min !== undefined ? min : priceMin;
+    const maxPrice = max !== undefined ? max : priceMax;
 
-  setSearchKeyword(k);
-  if (min !== undefined) setPriceMin(min);
-  if (max !== undefined) setPriceMax(max);
+    setSearchKeyword(k);
+    if (min !== undefined) setPriceMin(min);
+    if (max !== undefined) setPriceMax(max);
 
-  let results = productsData;
+    let results = productsData;
 
-  // lọc theo tên
-  if (k.trim()) {
-    results = results.filter(p =>
-      p.name.toLowerCase().includes(k.toLowerCase()),
-    );
-  }
+    // lọc theo tên
+    if (k.trim()) {
+      results = results.filter(p =>
+        p.name.toLowerCase().includes(k.toLowerCase()),
+      );
+    }
 
-  // lọc theo giá tối thiểu
-  if (minPrice.trim()) {
-    results = results.filter(p => p.price >= Number(minPrice));
-  }
+    // lọc theo giá tối thiểu
+    if (minPrice.trim()) {
+      results = results.filter(p => p.price >= Number(minPrice));
+    }
 
-  // lọc theo giá tối đa
-  if (maxPrice.trim()) {
-    results = results.filter(p => p.price <= Number(maxPrice));
-  }
+    // lọc theo giá tối đa
+    if (maxPrice.trim()) {
+      results = results.filter(p => p.price <= Number(maxPrice));
+    }
 
-  setProducts(results.reverse());
-};
-
+    setProducts(results.reverse());
+  };
 
   const getImageSource = (img: string) => images[img] || images['t-shirt.jpg'];
-
-  
 
   const renderItem = ({ item }: { item: Product }) => (
     <TouchableOpacity
       style={styles.card}
       onPress={() => navigation.navigate('ProductDetail', { product: item })}
     >
-      {' '}
-      <Image source={getImageSource(item.img)} style={styles.image} />{' '}
+      <Image source={getImageSource(item.img)} style={styles.image} />
       <View style={styles.info}>
-        {' '}
-        <Text style={styles.name}>{item.name}</Text>{' '}
-        <Text style={styles.price}>{item.price.toLocaleString()} đ</Text>{' '}
-      </View>{' '}
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.price}>{item.price.toLocaleString()} đ</Text>
+      </View>
     </TouchableOpacity>
   );
 
-  
   return (
     <View style={{ flex: 1, backgroundColor: '#f7f5ff' }}>
-      {' '}
       <View style={styles.header}>
-  <Text style={styles.title}>🛍 Danh sách sản phẩm</Text>
+        <Text style={styles.title}>🛍 Danh sách sản phẩm</Text>
 
-  <TextInput
-    style={styles.search}
-    placeholder="🔍 Tìm kiếm sản phẩm..."
-    value={searchKeyword}
-    onChangeText={(text) => handleSearch(text)}
-  />
+        <TextInput
+          style={styles.search}
+          placeholder="🔍 Tìm kiếm sản phẩm..."
+          value={searchKeyword}
+          onChangeText={text => handleSearch(text)}
+        />
 
-  {/* Lọc giá */}
-  <View style={{ flexDirection: 'row', marginTop: 10 }}>
-    <TextInput
-      style={[styles.search, { flex: 1, marginRight: 5 }]}
-      placeholder="Giá từ..."
-      keyboardType="numeric"
-      value={priceMin}
-      onChangeText={(v) => handleSearch(searchKeyword, v, undefined)}
-    />
+        {/* Lọc giá */}
+        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+          <TextInput
+            style={[styles.search, { flex: 1, marginRight: 5 }]}
+            placeholder="Giá từ..."
+            keyboardType="numeric"
+            value={priceMin}
+            onChangeText={v => handleSearch(searchKeyword, v, undefined)}
+          />
 
-    <TextInput
-      style={[styles.search, { flex: 1, marginLeft: 5 }]}
-      placeholder="Đến..."
-      keyboardType="numeric"
-      value={priceMax}
-      onChangeText={(v) => handleSearch(searchKeyword, undefined, v)}
-    />
-  </View>
-</View>
+          <TextInput
+            style={[styles.search, { flex: 1, marginLeft: 5 }]}
+            placeholder="Đến..."
+            keyboardType="numeric"
+            value={priceMax}
+            onChangeText={v => handleSearch(searchKeyword, undefined, v)}
+          />
+        </View>
+      </View>
 
-      
       <FlatList
         data={products}
         keyExtractor={item => item.id.toString()}

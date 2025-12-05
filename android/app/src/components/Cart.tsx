@@ -25,13 +25,12 @@ export default function Cart() {
   };
 
   const navigation =
-      useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     loadCart();
   }, []);
 
-  
   const handleRemove = (cartId: number) => {
     Alert.alert(
       'Xóa sản phẩm',
@@ -85,24 +84,21 @@ export default function Cart() {
     item: Product & { cartId: number; quantity: number; img: string };
   }) => (
     <View style={styles.card}>
-      {' '}
-      <Image source={getImageSource(item.img)} style={styles.image} />{' '}
+      <Image source={getImageSource(item.img)} style={styles.image} />
       <View style={styles.info}>
-        {' '}
-        <Text style={styles.name}>{item.name}</Text>{' '}
+        <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.price}>
-          {item.price.toLocaleString()} đ x {item.quantity}{' '}
-        </Text>{' '}
+          {item.price.toLocaleString()} đ x {item.quantity}
+        </Text>
       </View>
       <View style={{ justifyContent: 'center' }}>
         <TouchableOpacity
           style={styles.removeBtn}
           onPress={() => handleRemove(item.cartId)}
         >
-          {' '}
-          <Text style={styles.removeText}>Xóa</Text>{' '}
-        </TouchableOpacity>{' '}
-      </View>{' '}
+          <Text style={styles.removeText}>Xóa</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 
@@ -118,26 +114,28 @@ export default function Cart() {
           <Text style={styles.emptyText}>Giỏ hàng trống</Text>
         }
         ListFooterComponent={
-  cartItems.length > 0 ? (
-    <View style={{ paddingHorizontal: 16, marginTop: 10 }}>
-      <Text style={styles.total}>
-        Tổng tiền: {totalPrice.toLocaleString()} đ
-      </Text>
+          cartItems.length > 0 ? (
+            <View style={{ paddingHorizontal: 16, marginTop: 10 }}>
+              <Text style={styles.total}>
+                Tổng tiền: {totalPrice.toLocaleString()} đ
+              </Text>
 
-      <TouchableOpacity
-        style={styles.payBtn}
-        onPress={() => navigation.navigate('Payment', {
-          total: totalPrice,
-          items: cartItems
-        })}
-      >
-        <Text style={styles.payText}>Thanh toán</Text>
-      </TouchableOpacity>
-    </View>
-  ) : null
-}
-      />{' '}
-      <Nav />{' '}
+              <TouchableOpacity
+                style={styles.payBtn}
+                onPress={() =>
+                  navigation.navigate('Payment', {
+                    total: totalPrice,
+                    items: cartItems,
+                  })
+                }
+              >
+                <Text style={styles.payText}>Thanh toán</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null
+        }
+      />
+      <Nav />
     </View>
   );
 }
@@ -160,17 +158,17 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   payBtn: {
-  backgroundColor: '#4a3aff',
-  paddingVertical: 12,
-  borderRadius: 10,
-  alignItems: 'center',
-  marginTop: 10,
-},
-payText: {
-  color: '#fff',
-  fontSize: 18,
-  fontWeight: 'bold',
-},
+    backgroundColor: '#4a3aff',
+    paddingVertical: 12,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  payText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
   card: {
     flexDirection: 'row',
     backgroundColor: '#fff',

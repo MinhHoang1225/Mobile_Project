@@ -46,18 +46,20 @@ const Nav = () => {
       <TouchableOpacity
         style={styles.navButton}
         activeOpacity={0.7}
-        onPress={() => navigation.navigate('User')}
+        onPress={() => navigation.navigate('HistoryItemScreen')}
       >
-        <Text style={styles.navText}>User</Text>
+        <Text style={styles.navText}>History Order</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.navButton}
         activeOpacity={0.7}
-        onPress={() => navigation.navigate('HistoryItemScreen')}
+        onPress={() => navigation.navigate('User')}
       >
-        <Text style={styles.navText}>History Order</Text>
+        <Text style={styles.navText}>User</Text>
       </TouchableOpacity>
+
+      
       {/* <TouchableOpacity
         style={styles.navButton}
         activeOpacity={0.7}
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   navText: {
-    fontSize: 14,
+    fontSize: 10,
     fontWeight: '600',
     color: '#000000',
   },

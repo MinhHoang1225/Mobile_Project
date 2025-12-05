@@ -78,8 +78,9 @@ export default function AdminOrder() {
 
   return (
     <View style={{ flex: 1 }}>
+      <Text style={styles.header}>📦 Quản lý đơn hàng</Text>
       <View style={styles.container}>
-        <Text style={styles.header}>📦 Quản lý đơn hàng</Text>
+        
         {orders.length === 0 ? (
           <Text style={styles.empty}>Chưa có đơn hàng nào.</Text>
         ) : (
@@ -99,11 +100,12 @@ export default function AdminOrder() {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, backgroundColor: '#f2f4f8' },
   header: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
-    color: '#4a3aff',
+    paddingVertical: 16,
+    backgroundColor: '#dad3aff6',
+    color: '#333',
   },
   card: {
     backgroundColor: '#fff',

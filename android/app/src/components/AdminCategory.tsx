@@ -127,31 +127,33 @@ const AdminCategory = () => {
       </View>
 
       <View style={{ marginTop: 8 }}>
-  {/* Hàng 1: Sửa + Xoá */}
-  <View style={{ flexDirection: 'row', gap: 8 }}>
-    <TouchableOpacity style={styles.btnEdit} onPress={() => handleEdit(item)}>
-      <Text style={styles.btnText}>Sửa</Text>
-    </TouchableOpacity>
+        {/* Hàng 1: Sửa + Xoá */}
+        <View style={{ flexDirection: 'row', gap: 8 }}>
+          <TouchableOpacity
+            style={styles.btnEdit}
+            onPress={() => handleEdit(item)}
+          >
+            <Text style={styles.btnText}>Sửa</Text>
+          </TouchableOpacity>
 
-    <TouchableOpacity
-      style={styles.btnDelete}
-      onPress={() => handleDeleteCategory(item.id)}
-    >
-      <Text style={styles.btnText}>Xoá</Text>
-    </TouchableOpacity>
-  </View>
+          <TouchableOpacity
+            style={styles.btnDelete}
+            onPress={() => handleDeleteCategory(item.id)}
+          >
+            <Text style={styles.btnText}>Xoá</Text>
+          </TouchableOpacity>
+        </View>
 
-  {/* Hàng 2: Thêm sản phẩm */}
-  <View style={{ marginTop: 8 }}>
-    <TouchableOpacity
-      style={styles.btnAddProduct}
-      onPress={() => handleAddProduct(item)}
-    >
-      <Text style={styles.btnText}>➕ Thêm sản phẩm</Text>
-    </TouchableOpacity>
-  </View>
-</View>
-
+        {/* Hàng 2: Thêm sản phẩm */}
+        <View style={{ marginTop: 8 }}>
+          <TouchableOpacity
+            style={styles.btnAddProduct}
+            onPress={() => handleAddProduct(item)}
+          >
+            <Text style={styles.btnText}>➕ Thêm sản phẩm</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 
@@ -181,14 +183,17 @@ const AdminCategory = () => {
       )}
 
       {!showForm && (
-        <TouchableOpacity style={styles.btnAdd} onPress={() => setShowForm(true)}>
+        <TouchableOpacity
+          style={styles.btnAdd}
+          onPress={() => setShowForm(true)}
+        >
           <Text style={styles.btnAddText}>➕ Thêm loại sản phẩm</Text>
         </TouchableOpacity>
       )}
 
       <FlatList
         data={categories}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
         contentContainerStyle={{ padding: 16, paddingBottom: 100 }}
         ListEmptyComponent={
@@ -209,7 +214,9 @@ const AdminCategory = () => {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 12 }}>
+            <Text
+              style={{ fontWeight: 'bold', fontSize: 18, marginBottom: 12 }}
+            >
               Thêm sản phẩm cho: {currentCategory?.name}
             </Text>
 
@@ -227,7 +234,10 @@ const AdminCategory = () => {
               keyboardType="numeric"
             />
 
-            <TouchableOpacity style={styles.btnSave} onPress={handleSaveProduct}>
+            <TouchableOpacity
+              style={styles.btnSave}
+              onPress={handleSaveProduct}
+            >
               <Text style={styles.btnSaveText}>💾 Lưu sản phẩm</Text>
             </TouchableOpacity>
 
@@ -247,23 +257,115 @@ const AdminCategory = () => {
 export default AdminCategory;
 
 const styles = StyleSheet.create({
-  title: { fontSize: 22, fontWeight: 'bold', textAlign: 'center', paddingVertical: 16, backgroundColor: '#dad3aff6', color: '#333' },
-  formContainer: { padding: 16, backgroundColor: '#fff', margin: 10, borderRadius: 14, elevation: 3, borderWidth: 1, borderColor: '#e6e3d1' },
-  input: { borderWidth: 1, borderColor: '#ccc', borderRadius: 10, backgroundColor: '#faf9f4', padding: 10, marginBottom: 12, color: '#333' },
-  btnAdd: { backgroundColor: '#dad3aff6', margin: 16, padding: 12, borderRadius: 12, borderWidth: 1, borderColor: '#cfc8a7', elevation: 2 },
-  btnAddText: { color: '#333', fontSize: 16, textAlign: 'center', fontWeight: 'bold' },
-  btnSave: { backgroundColor: '#333', padding: 12, borderRadius: 12, marginBottom: 12 },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingVertical: 16,
+    backgroundColor: '#dad3aff6',
+    color: '#333',
+  },
+  formContainer: {
+    padding: 16,
+    backgroundColor: '#fff',
+    margin: 10,
+    borderRadius: 14,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#e6e3d1',
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    backgroundColor: '#faf9f4',
+    padding: 10,
+    marginBottom: 12,
+    color: '#333',
+  },
+  btnAdd: {
+    backgroundColor: '#dad3aff6',
+    margin: 16,
+    padding: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#cfc8a7',
+    elevation: 2,
+  },
+  btnAddText: {
+    color: '#333',
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  btnSave: {
+    backgroundColor: '#333',
+    padding: 12,
+    borderRadius: 12,
+    marginBottom: 12,
+  },
   btnSaveText: { color: '#fff', fontWeight: 'bold', textAlign: 'center' },
-  btnCancel: { backgroundColor: '#dad3aff6', padding: 12, borderRadius: 12, borderWidth: 1, borderColor: '#cfc8a7' },
+  btnCancel: {
+    backgroundColor: '#dad3aff6',
+    padding: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#cfc8a7',
+  },
   btnCancelText: { color: '#333', fontWeight: 'bold', textAlign: 'center' },
-  card: { flexDirection: 'row', backgroundColor: '#fff', padding: 14, borderRadius: 14, marginBottom: 12, elevation: 3, borderWidth: 1, borderColor: '#eee8cf' },
-  categoryName: { fontSize: 18, fontWeight: '600', marginBottom: 4, color: '#333' },
+  card: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    padding: 14,
+    borderRadius: 14,
+    marginBottom: 12,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#eee8cf',
+  },
+  categoryName: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginBottom: 4,
+    color: '#333',
+  },
   categoryId: { color: '#777' },
-  btnRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 8 },
-  btnEdit: { backgroundColor: '#ccc189f6', paddingVertical: 6, paddingHorizontal: 12, borderRadius: 8 },
-  btnDelete: { backgroundColor: '#e74c3c', paddingVertical: 6, paddingHorizontal: 12, borderRadius: 8 },
-  btnAddProduct: { backgroundColor: '#4CAF50', paddingVertical: 6, paddingHorizontal: 12, borderRadius: 8 },
+  btnRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  btnEdit: {
+    backgroundColor: '#ccc189f6',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+  },
+  btnDelete: {
+    backgroundColor: '#e74c3c',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+  },
+  btnAddProduct: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+  },
   btnText: { color: '#fff', fontWeight: 'bold' },
-  modalOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.5)' },
-  modalContent: { width: '90%', backgroundColor: '#fff', borderRadius: 14, padding: 20, elevation: 5 },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalContent: {
+    width: '90%',
+    backgroundColor: '#fff',
+    borderRadius: 14,
+    padding: 20,
+    elevation: 5,
+  },
 });

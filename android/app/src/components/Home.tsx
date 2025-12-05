@@ -36,27 +36,24 @@ const Home = () => {
       <TouchableOpacity
         onPress={() => navigation.navigate('ProductDetail', { product: item })}
       >
-        {' '}
-        <Image source={images[item.img]} style={styles.image} />{' '}
-      </TouchableOpacity>{' '}
+        <Image source={images[item.img]} style={styles.image} />
+      </TouchableOpacity>
       <View>
-        {' '}
-        <Text style={styles.productName}>{item.name}</Text>{' '}
-        <Text style={styles.productPrice}>{item.price.toLocaleString()} đ</Text>{' '}
-      </View>{' '}
+        <Text style={styles.productName}>{item.name}</Text>
+        <Text style={styles.productPrice}>{item.price.toLocaleString()} đ</Text>
+      </View>
     </View>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      {' '}
       <Header />
       {/* Banner */}
       <ScrollView
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        style={styles.bannerContainer}
+        style={styles.bannerContainer}    
       >
         {banners.map((banner, index) => (
           <Image
@@ -101,7 +98,6 @@ const styles = StyleSheet.create({
   bannerImage: {
     width: width,
     height: 200,
-    
   },
   title: {
     fontSize: 20,
